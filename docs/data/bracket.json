@@ -1,0 +1,159 @@
+{
+  "seeds": {
+    "1": "Buster Poseys's Good Friends",
+    "2": "Sleeping with the Frisches",
+    "3": "Seahawks of Baseball",
+    "4": "Marcus Semian Liberation Army",
+    "5": "Fellowship of the Swing",
+    "6": "Ippei Mizuhara"
+  },
+  "results": {
+    "1": {
+      "start": "2026-08-30",
+      "end": "2026-09-05",
+      "final": false,
+      "matchups": [
+        {
+          "a_seed": 3,
+          "b_seed": 6,
+          "a_points": 6.0,
+          "b_points": 6.0,
+          "winner": 3,
+          "winner_name": "Seahawks of Baseball",
+          "categories": {
+            "R": {
+              "a": 0,
+              "b": 0,
+              "result": "TIE"
+            },
+            "HR": {
+              "a": 0,
+              "b": 0,
+              "result": "TIE"
+            },
+            "RBI": {
+              "a": 0,
+              "b": 0,
+              "result": "TIE"
+            },
+            "SB": {
+              "a": 0,
+              "b": 0,
+              "result": "TIE"
+            },
+            "AVG": {
+              "a": 0.0,
+              "b": 0.0,
+              "result": "TIE"
+            },
+            "OPS": {
+              "a": 0.0,
+              "b": 0.0,
+              "result": "TIE"
+            },
+            "W": {
+              "a": 0,
+              "b": 0,
+              "result": "TIE"
+            },
+            "SV": {
+              "a": 0,
+              "b": 0,
+              "result": "TIE"
+            },
+            "K": {
+              "a": 0,
+              "b": 0,
+              "result": "TIE"
+            },
+            "HLD": {
+              "a": 0,
+              "b": 0,
+              "result": "TIE"
+            },
+            "ERA": {
+              "a": 0.0,
+              "b": 0.0,
+              "result": "TIE"
+            },
+            "WHIP": {
+              "a": 0.0,
+              "b": 0.0,
+              "result": "TIE"
+            }
+          }
+        },
+        {
+          "a_seed": 4,
+          "b_seed": 5,
+          "a_points": 6.0,
+          "b_points": 6.0,
+          "winner": 4,
+          "winner_name": "Marcus Semian Liberation Army",
+          "categories": {
+            "R": {
+              "a": 0,
+              "b": 0,
+              "result": "TIE"
+            },
+            "HR": {
+              "a": 0,
+              "b": 0,
+              "result": "TIE"
+            },
+            "RBI": {
+              "a": 0,
+              "b": 0,
+              "result": "TIE"
+            },
+            "SB": {
+              "a": 0,
+              "b": 0,
+              "result": "TIE"
+            },
+            "AVG": {
+              "a": 0.0,
+              "b": 0.0,
+              "result": "TIE"
+            },
+            "OPS": {
+              "a": 0.0,
+              "b": 0.0,
+              "result": "TIE"
+            },
+            "W": {
+              "a": 0,
+              "b": 0,
+              "result": "TIE"
+            },
+            "SV": {
+              "a": 0,
+              "b": 0,
+              "result": "TIE"
+            },
+            "K": {
+              "a": 0,
+              "b": 0,
+              "result": "TIE"
+            },
+            "HLD": {
+              "a": 0,
+              "b": 0,
+              "result": "TIE"
+            },
+            "ERA": {
+              "a": 0.0,
+              "b": 0.0,
+              "result": "TIE"
+            },
+            "WHIP": {
+              "a": 0.0,
+              "b": 0.0,
+              "result": "TIE"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
