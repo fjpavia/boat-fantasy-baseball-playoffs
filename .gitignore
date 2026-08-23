@@ -1,0 +1,7 @@
+.yahoo_tokens.json
+__pycache__/
+*.pyc
+# working data stays local; only the published copy under docs/ is committed
+/data/
+!docs/data/
+set_env.py
