@@ -163,8 +163,8 @@
         {
           "a_seed": 1,
           "b_seed": 4,
-          "a_points": 5.5,
-          "b_points": 6.5,
+          "a_points": 4.5,
+          "b_points": 7.5,
           "winner": 4,
           "winner_name": "Marcus Semian Liberation Army",
           "categories": {
@@ -195,8 +195,8 @@
             },
             "OPS": {
               "a": 0.0,
-              "b": 0.0,
-              "result": "TIE"
+              "b": 0.25,
+              "result": "B"
             },
             "W": {
               "a": 0,
@@ -225,8 +225,8 @@
             },
             "WHIP": {
               "a": 0.0,
-              "b": 0.0,
-              "result": "TIE"
+              "b": 1.0,
+              "result": "B"
             }
           }
         },
