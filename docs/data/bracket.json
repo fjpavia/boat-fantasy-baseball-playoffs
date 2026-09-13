@@ -167,6 +167,11 @@
           "b_points": 6.0,
           "winner": 1,
           "winner_name": "Buster Posey's Good Friends",
+          "tiebreak": "3B",
+          "triples": {
+            "a": 2,
+            "b": 0
+          },
           "categories": {
             "R": {
               "a": 30,
@@ -237,6 +242,11 @@
           "b_points": 7.0,
           "winner": 3,
           "winner_name": "Seahawks of Baseball",
+          "tiebreak": null,
+          "triples": {
+            "a": 3,
+            "b": 0
+          },
           "categories": {
             "R": {
               "a": 27,

@@ -14,6 +14,8 @@
     --win: #3fb950;      /* category won */
     --winbg: rgba(63,185,80,0.10);
     --live: #d29922;     /* in-progress */
+    --tb: #d29922;       /* tiebreaker accent */
+    --tbbg: rgba(210,153,34,0.10);
     --num: "SFMono-Regular", ui-monospace, "JetBrains Mono", Menlo, Consolas, monospace;
   }
   * { box-sizing: border-box; }
@@ -82,6 +84,16 @@
   td.v.w { color: var(--win); background: var(--winbg); }
   tr:not(:last-child) td { border-bottom: 1px solid var(--line); }
 
+  /* triples tiebreaker row */
+  tr.tb td { border-top: 2px solid var(--line); color: var(--dim); }
+  tr.tb td.cat { color: var(--tb); }
+  tr.tb.used td { background: var(--tbbg); }
+  tr.tb.used td.v.w { color: var(--tb); background: var(--tbbg); font-weight: 600; }
+  .tbnote { padding: 8px 14px; color: var(--tb); font-size: 12px;
+    font-family: var(--num); background: var(--tbbg); }
+  .seednote { padding: 8px 14px; color: var(--dim); font-size: 12px;
+    font-family: var(--num); }
+
   .empty { color: var(--dim); text-align: center; padding: 48px 0;
     border: 1px dashed var(--line); border-radius: 10px; }
   footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--line);
@@ -106,7 +118,7 @@
   <div id="rounds"></div>
 
   <footer>
-    <span>Rate stats computed from game logs — may differ slightly from Yahoo's rounded values.</span>
+    <span>12 categories; triples (3B) break a 6–6 tie. Rate stats computed from game logs — may differ slightly from Yahoo's rounded values.</span>
     <a href="https://baseball.fantasysports.yahoo.com/">Fantasy data provided by Yahoo Fantasy</a>
   </footer>
 </div>
@@ -157,16 +169,13 @@ function renderBracket(seeds, results) {
          + `<span class="nm">${seeds[String(seed)]||"?"}</span>${tag}</div>`;
   };
 
-  // Round 1 column: 3v6, 4v5
   let c1 = `<div class="col-label">Round 1</div>`;
   const r1w = s => r1 ? winnerOf(results,1,s)===s : false;
   c1 += slot(3,{won:r1w(3)}) + slot(6,{won:r1w(6)});
   c1 += `<div style="height:8px"></div>`;
   c1 += slot(4,{won:r1w(4)}) + slot(5,{won:r1w(5)});
 
-  // Round 2 column: seeds 1,2 enter here vs R1 winners
   let c2 = `<div class="col-label">Round 2</div>`;
-  const r2w = s => r2 ? winnerOf(results,2,s)===s : false;
   if (r2) {
     for (const m of r2.matchups) {
       c2 += slot(m.a_seed,{won:m.winner===m.a_seed});
@@ -177,7 +186,6 @@ function renderBracket(seeds, results) {
     c2 += slot(1,{bye:true}) + slot(2,{bye:true});
   }
 
-  // Final
   let c3 = `<div class="col-label">Final</div>`;
   if (r3) {
     const m = r3.matchups[0];
@@ -196,7 +204,7 @@ function renderBracket(seeds, results) {
 
 function renderRounds(seeds, results) {
   const host = document.getElementById("rounds");
-  const rounds = Object.keys(results).map(Number).sort((a,b)=>b-a); // newest first
+  const rounds = Object.keys(results).map(Number).sort((a,b)=>b-a);
   if (!rounds.length) {
     host.innerHTML = '<div class="empty">No results scored yet.</div>';
     return;
@@ -223,15 +231,33 @@ function matchupCard(m, seeds) {
          + `<td class="v${bw?" w":""}">${fmt(c,cell.b)}</td></tr>`;
   }).join("");
 
-  const tie = m.a_points === m.b_points;
+  // Triples row — always shown, set apart; highlighted when it broke the tie.
+  let tbRow = "";
+  if (m.triples) {
+    const used = m.tiebreak === "3B";
+    const aw = used && m.triples.a > m.triples.b;
+    const bw = used && m.triples.b > m.triples.a;
+    tbRow = `<tr class="tb${used?" used":""}">`
+          + `<td class="v${aw?" w":""}">${m.triples.a}</td>`
+          + `<td class="cat">3B</td>`
+          + `<td class="v${bw?" w":""}">${m.triples.b}</td></tr>`;
+  }
+
+  let note = "";
+  if (m.tiebreak === "3B") {
+    note = `<div class="tbnote">6–6 tie broken by triples (${m.triples.a}–${m.triples.b})</div>`;
+  } else if (m.tiebreak === "seed") {
+    note = `<div class="seednote">6–6, triples tied ${m.triples.a}–${m.triples.b} — higher seed advances</div>`;
+  }
+
   return `<div class="card">
     <div class="teams">
       <div class="team${aAdv?" adv":""}"><span class="s">${m.a_seed}</span>${seeds[String(m.a_seed)]}</div>
       <div class="score">${m.a_points} – ${m.b_points}</div>
       <div class="team r${!aAdv?" adv":""}">${seeds[String(m.b_seed)]}<span class="s">${m.b_seed}</span></div>
     </div>
-    <table><tbody>${rows}</tbody></table>
-    ${tie ? `<div style="padding:8px 14px;color:var(--dim);font-size:12px;font-family:var(--num)">6–6 — higher seed (${m.winner}) advances</div>`:""}
+    <table><tbody>${rows}${tbRow}</tbody></table>
+    ${note}
   </div>`;
 }
 </script>
